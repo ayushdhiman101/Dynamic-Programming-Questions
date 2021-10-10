@@ -24,29 +24,26 @@ class Solution {
         
         int sum=arrsum/k;
         
-        return countofsubsetsum(nums,sum,k);
+        return subsetsumproblem(nums,sum,k);
         
     }
-     public boolean countofsubsetsum(int[] arr, int sum,int k){
+     public boolean subsetsumproblem(int[] arr, int sum,int k){
          int n=arr.length;
-         int t[][]=new int[n+1][sum+1];
+         boolean t[][]=new boolean[n+1][sum+1];
          
-         for(int i=0;i<n+1;i++) t[i][0]=1;
-         for(int j=1;j<sum+1;j++) t[0][j]=0;
+         for(int i=0;i<n+1;i++) t[i][0]=true;
+         for(int j=1;j<sum+1;j++) t[0][j]=false;
          
          for(int i=1;i<n+1;i++){
              for(int j=0;j<sum+1;j++){
                  if(arr[i-1]<=j){
-                      t[i][j]=t[i-1][j]+t[i-1][j-arr[i-1]];
+                      t[i][j]=t[i-1][j] || t[i-1][j-arr[i-1]];
                  }
                  else{
                      t[i][j]=t[i-1][j];
                  }
              }
          }
-         int x= t[n][sum];
-         System.out.println(x);
-         if(x!=0) return true;
-         return false;
+         return t[n][sum];
      }
 }
