@@ -34,4 +34,29 @@ class Solution {
 
 //  BOTTOM UP APPROACH (TABLE)
 
+class Solution {
+    static int t[][]=new int [1000][1000];
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n=text1.length(), m=text2.length();
+        return solve(text1,text2,n,m);
+    }
+  
+    public int solve(String x, String y, int n, int m) {
+                for(int i=0;i<n+1;i++) t[i][0]=0;
+                for(int j=1;j<m+1;j++) t[0][j]=0;
+                    
+                for(int i=1;i<n+1;i++){
+                     for(int j=1;j<m+1;j++){
+                            if(x.charAt(i-1)==y.charAt(j-1))
+                                t[i][j]= (1 + t[i-1][j-1]);
+                            else
+                                t[i][j]= Math.max(t[i][j-1],t[i-1][j]);
+                    }
+                }
+        return t[n][m];
+    }
+}
+        
+
+
         
