@@ -42,10 +42,10 @@ class Solution
 {
     public int LongestRepeatingSubsequence(String str)
     {
-		    int m=str.length();
-		    return LCS(str,str,m,m);
-		}
-		int LCS(String a, String b, int m, int n){
+	int m=str.length();
+	return LCS(str,str,m,m);
+    }
+    public int LCS(String a, String b, int m, int n){
         int t[][]=new int [m+1][n+1];
         
         for(int i=0;i<m+1;i++) t[i][0]=0;
